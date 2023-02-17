@@ -1,18 +1,12 @@
-const express= require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const User = require("../Modules/User");
 
-router.get("/",(req,res)=>{
-    
-    obj={
-         name:"Aritra",
-         roll:81,
-    }
+router.get("/", async (req, res) => {
+	console.log(req.body);
+	const user = User(req.body);
+	res.send(req.body);
+	await user.save();
+});
 
-    res.json(obj)
-})
-
-module.exports=router
-
-
-
-
+module.exports = router;

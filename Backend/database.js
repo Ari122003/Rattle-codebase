@@ -1,11 +1,11 @@
-const mong = require("mongoose")
+const mong = require("mongoose");
 
-const uri = "mongodb://localhost:27017"
+const uri = "mongodb://127.0.0.1:27017/I-Notebook";
 
-const connect =()=>{
-    mong.connect(uri,()=>{
-        console.log("Successfully connected")
-    })
-}
+const connect = async () => {
+	await mong.connect(uri, () => {
+		console.log("Successfully connected");
+	});
+};
 
-module.exports=connect
+module.exports = connect;
