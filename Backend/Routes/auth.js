@@ -3,7 +3,10 @@ const router = express.Router();
 const User = require("../Modules/User");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+const fetchuser = require("../Middleware/fetchuser");
+
+// createuser endpoint
 
 router.post(
 	"/CreateUser",
@@ -45,22 +48,92 @@ router.post(
 				email: req.body.email,
 				password: secpass,
 			});
-             
-        //    Token generator
+
+			//    Token generator
 
 			const data = {
-				user:{
-					id:user.id,
-				}
-			}
+				user: {
+					id: user.id,
+				},
+			};
 
-			const token=  jwt.sign(data,"I am Aritra")
-			res.json({token});
-
+			const token = jwt.sign(data, "I am Aritra");
+			res.json({ token });
 		} catch (error) {
 			//   if there is some error in the database
 			console.log(error.message);
-			res.status(500).send("SOME ERROR OCCURED");
+			res.status(500).send("Internal server error");
+		}
+	}
+);
+
+// login endpoint
+
+router.post(
+	"/login",
+	[
+		body("email", "Enter a valid email").isEmail(),
+
+		body("password", "Password can not be blank").exists(),
+	],
+
+	async (req, res) => {
+		//   If there is an error in credentials
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		const { email, password } = req.body;
+
+		try {
+			//  If the user already exists
+
+			let user = await User.findOne({ email });
+
+			if (!user) {
+				return res.status(400).json({ error: "Invalid credentials" });
+			}
+
+			const passcomp = await bcrypt.compare(password, user.password);
+			if (!passcomp) {
+				return res.status(400).json({ error: "Invalid credentials" });
+			}
+
+			//    Token generator
+
+			const data = {
+				user: {
+					id: user.id,
+				},
+			};
+
+			const token = jwt.sign(data, "I am Aritra");
+			res.json({ token });
+		} catch (error) {
+			//   if there is some error in the database
+			console.log(error.message);
+			res.status(500).send("Internal server error");
+		}
+	}
+);
+
+// Get user details endpoint
+
+router.post(
+	"/getuser",
+	fetchuser,
+
+	async (req, res) => {
+		try {
+			const userid = req.user.id;
+
+			const user = await User.findById(userid).select("-password");
+			res.send(user);
+		} catch (error) {
+			//   if there is some error in the database
+			console.log(error.message);
+			res.status(500).send("Internal server error");
 		}
 	}
 );
