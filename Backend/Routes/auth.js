@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const User = require("../Modules/User");
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
 
-router.get(
+router.post(
 	"/CreateUser",
 	[
 		// credentials validators
@@ -33,13 +35,28 @@ router.get(
 					.json({ error: "User with this email already exeits" });
 			}
 			//  create the user in database
+
+			const salt = await bcrypt.genSalt(10);
+
+			const secpass = await bcrypt.hash(req.body.password, salt);
+
 			user = await User.create({
 				name: req.body.name,
 				email: req.body.email,
-				password: req.body.password,
+				password: secpass,
 			});
+             
+        //    Token generator
 
-			res.json(user);
+			const data = {
+				user:{
+					id:user.id,
+				}
+			}
+
+			const token=  jwt.sign(data,"I am Aritra")
+			res.json({token});
+
 		} catch (error) {
 			//   if there is some error in the database
 			console.log(error.message);
