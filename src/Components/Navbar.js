@@ -6,7 +6,7 @@ export default function Navbar() {
 		<>
 			<nav className="navbar navbar-expand-lg bg-body-tertiary">
 				<div className="container-fluid">
-					<a className="navbar-brand tw-font-bold">Navbar</a>
+					<a className="navbar-brand tw-font-bold">Rattle</a>
 					<button
 						className="navbar-toggler"
 						type="button"
