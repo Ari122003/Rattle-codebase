@@ -1,4 +1,5 @@
 import React from "react";
+import Notes from "./Notes";
 
 export default function Home() {
 	return (
@@ -47,7 +48,7 @@ export default function Home() {
 				</form>
 			</div>
 
-			<h1 className="tw-mt-8 h1 tw-text-center">Your notes</h1>
+      <Notes/>
 		</>
 	);
 }
