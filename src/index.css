@@ -1,20 +1,377 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+i {
+	cursor: pointer;
+}
+
+/* Card */
+
+.card {
+	width: 190px;
+	height: 254px;
+	background: #0e2a4f;
+	position: relative;
+	display: flex;
+	place-content: center;
+	place-items: center;
+	overflow: hidden;
+	border-radius: 20px;
+}
+
+.card h2 {
+	z-index: 1;
+	color: white;
+	font-size: 1.5em;
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-bottom: 20px;
+}
+
+.card p {
+	z-index: 1;
+	color: white;
+	margin-bottom: 1.5em;
+	font-size: small;
+}
+
+.card::before {
+	content: "";
+	position: absolute;
+	width: 100px;
+	background-image: linear-gradient(
+		180deg,
+		rgb(0, 183, 255),
+		rgb(255, 48, 255)
+	);
+	height: 130%;
+	animation: rotBGimg 3s linear infinite;
+	transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.card::after {
+	content: "";
+	position: absolute;
+	background: #0f3970;
+	inset: 5px;
+	border-radius: 15px;
+}
+/* .card:hover:before {
+  background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
+  animation: rotBGimg 3.5s linear infinite;
+}
+
+/* INPUTS */
+
+#form {
+	width: 300px;
+	border: 2px solid black;
+	border-radius: 40px;
+	box-shadow: 10px 10px 30px black;
+}
+
+.containerr {
+	position: relative;
+	width: 200px;
+}
+
+.containerr input {
+	width: 100%;
+	background: transparent;
+	outline: none;
+	border: none;
+	color: #222;
+	padding: 8px;
+}
+
+.containerr label {
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: black;
+	pointer-events: none;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+
+	font-weight: bold;
+}
+
+.containerr input:valid ~ label,
+.containerr input:focus ~ label {
+	color: black;
+	-webkit-transform: translateY(-15px);
+	-ms-transform: translateY(-15px);
+	transform: translateY(-15px);
+	font-size: 0.6rem;
+}
+
+.containerr i {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: #222;
+}
+
+.containerr i:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	background: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		from(#ff1b69),
+		color-stop(#ff0),
+		color-stop(#2196f3),
+		color-stop(#9c27b0),
+		to(#ff1b69)
+	);
+
+	animation: animate 3s linear infinite;
+
+	-webkit-animation: animate 3s linear infinite;
+	animation: animate 3s linear infinite;
+}
+
+/* Button */
+
+.buttonn {
+	display: flex;
+    border:2px solid black;
+    border-radius: 5px;
+    width:170px;
+    
+}
+
+.box {
+	width:25px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 15px;
+	font-weight: 700;
+	color:white;
+	transition: all 0.8s;
+	cursor: pointer;
+	position: relative;
+	background: black;
+	overflow: hidden;
+   
+}
+
+.box:before {
+	content: "A";
+	position: absolute;
+	top: 0;
+	background:white;
+    color:black;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: translateY(100%);
+	transition: transform 0.4s;
+}
+
+.box:nth-child(2)::before {
+	transform: translateY(-100%);
+	content: "d";
+}
+
+.box:nth-child(3)::before {
+	content: "d";
+}
+
+.box:nth-child(4)::before {
+	transform: translateY(-100%);
+	content: "N";
+}
+
+.box:nth-child(5)::before {
+	content: "o";
+}
+.box:nth-child(6)::before {
+    transform: translateY(-100%);
+	content: "t";
+}
+.box:nth-child(7)::before {
+	content: "e";
 }
 
 
+.buttonn:hover .box:before {
+	transform: translateY(0);
+}
+
+/* BODY */
+body {
+	background: linear-gradient(
+		-45deg,
+		rgb(224, 9, 224),
+		rgb(161, 13, 240),
+		rgb(241, 148, 7),
+		rgb(8, 237, 218),
+		rgb(6, 6, 250)
+	);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.heading {
+	font-family: "Nanum Myeongjo", serif;
+}
+
+/* Heading */
+
+h1 {
+	font-family: "Teko", sans-serif;
+	text-transform: uppercase;
+
+	text-align: center;
+	display: flex;
+	display: flex;
+	align-items: center;
+	align-items: center;
+	justify-content: center;
+	justify-content: center;
+	margin: 0;
+
+	position: relative;
+
+	color: #000;
+}
+
+h1:before {
+	content: attr(data-text);
+	position: absolute;
+	background: linear-gradient(white, white);
+	background-clip: text;
+	color: transparent;
+	background-size: 100% 90%;
+	line-height: 0.9;
+	clip-path: ellipse(120px 120px at -2.54% -9.25%);
+	animation: swing 5s infinite;
+	animation-direction: alternate;
+}
+
+@keyframes swing {
+	0% {
+		-webkit-clip-path: ellipse(120px 120px at -2.54% -9.25%);
+		clip-path: ellipse(120px 120px at -2.54% -9.25%);
+	}
+	50% {
+		-webkit-clip-path: ellipse(120px 120px at 49.66% 64.36%);
+		clip-path: ellipse(120px 120px at 49.66% 64.36%);
+	}
+	100% {
+		clip-path: ellipse(120px 120px at 102.62% -1.61%);
+		clip-path: ellipse(120px 120px at 102.62% -1.61%);
+	}
+}
+
+/* Rattle */
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+svg {
+	display: block;
+	font: 10.5em "Montserrat";
+	width: 100px;
+
+	margin: 0 auto;
+}
+.g-ants {
+	font-weight: bolder;
+	font-size: 1.45em;
+	margin: auto;
+}
+
+.text-copy {
+	fill: none;
+	stroke: white;
+	stroke-dasharray: 6% 29%;
+	stroke-width: 5px;
+	stroke-dashoffset: 0%;
+	animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1) {
+	stroke: #efe8ed;
+	animation-delay: -1s;
+}
+
+.text-copy:nth-child(2) {
+	stroke: #82ccf7;
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3) {
+	stroke: #f6aec3;
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4) {
+	stroke: #e9f295;
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5) {
+	stroke: #d28df7;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+	100% {
+		stroke-dashoffset: -35%;
+	}
+}
+
+
+#icon{
+    z-index: 1;
+    color:white;
+}
