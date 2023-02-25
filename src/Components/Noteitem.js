@@ -6,7 +6,7 @@ export default function Noteitem(props) {
 
 	const notes = props.notes;
 	return (
-		<div className="col-md-3 d-flex tw-justify-center tw-flex">
+		<div className="col-md-3 d-flex tw-justify-center tw-flex tw-my-5">
 			<div className="cards card  ">
 				<div className="cards card heading container tw-text-center">
 					<h2 className="">{notes.title.length>30?notes.title.slice(0,30)+"...":notes.title}</h2>
@@ -14,7 +14,7 @@ export default function Noteitem(props) {
 				</div>
 				<div className="icont">
 					<i className="fa-solid fa-pen-to-square icon " ></i>
-					<i class="fa-solid icon fa-trash"></i>
+					<i className="fa-solid icon fa-trash" onClick={()=>{deleteNote(notes._id)}}></i>
 				</div>
 			</div>
 		</div>

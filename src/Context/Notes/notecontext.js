@@ -31,7 +31,6 @@ function Notecontext(props) {
 			date: "2023-02-20T19:19:06.336Z",
 			__v: 0,
 		},
-		
 	];
 
 	const [note, setnote] = useState(mynotes);
@@ -55,7 +54,13 @@ function Notecontext(props) {
 	// Delete a note
 
 	const deleteNote = (id) => {
-		console.log(id)
+		let newnote = note.filter((item) => {
+			if(item._id!==id){
+				return item
+			}
+		});
+
+		setnote(newnote);
 	};
 
 	// Edit a note
