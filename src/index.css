@@ -38,6 +38,7 @@ i {
 	z-index: 1;
 	color: white;
 	font-size: 1.5em;
+	margin-top:20px;
 	
 }
 
@@ -86,6 +87,8 @@ i {
 	color:white;
 }
 
+
+
 .icont{
 	display:flex;
 	width: 100px;
@@ -93,6 +96,9 @@ i {
 	justify-content:space-between;
 }
 .cardcont{
+	z-index: 1;
+}
+.tag{
 	z-index: 1;
 }
 /* .card:hover:before {

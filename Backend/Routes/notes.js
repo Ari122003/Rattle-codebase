@@ -28,6 +28,9 @@ router.post(
 		body("description", "Description must have atleast 5 characters").isLength({
 			min: 5,
 		}),
+		body("tag", "Tag must have atmost 8 cahracters").isLength({
+			max: 8,min:3
+		}),
 	],
 	async (req, res) => {
 		try {
