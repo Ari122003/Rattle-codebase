@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { context } from "../Context/Notes/Notecontext";
-import Addnote from "./Addnote";
+
 import Noteitem from "./Noteitem";
 
 export default function Notes() {
