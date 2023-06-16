@@ -4,6 +4,7 @@ import { context } from "../Context/Notes/Notecontext";
 
 export default function Editnote() {
 	const { note, getNote } = useContext(context);
+	
 
 	useEffect(() => {
 		getNote();

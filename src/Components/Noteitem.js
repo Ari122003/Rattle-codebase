@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { context } from "../Context/Notes/Notecontext";
 import { Link } from "react-router-dom";
 
+
 export default function Noteitem(props) {
 	const { deleteNote } = useContext(context);
 
@@ -34,34 +35,34 @@ export default function Noteitem(props) {
 					<div className="modal-content bg-dark">
 						<div className="container text-light">
 							<form>
-								<div class="mb-3">
-									<label for="exampleInputEmail1" class="form-label">
+								<div className="mb-3">
+									<label htmlFor="exampleInputEmail1" className="form-label">
 										Title
 									</label>
 									<input
 										type="text"
-										class="form-control"
+										className="form-control"
 										id="exampleInputEmail1"
 										aria-describedby="emailHelp"
 									/>
 								</div>
-								<div class="mb-3">
-									<label for="exampleInputPassword1" class="form-label">
+								<div className="mb-3">
+									<label htmlFor="exampleInputPassword1" className="form-label">
 										Description
 									</label>
 									<input
 										type="text"
-										class="form-control"
+										className="form-control"
 										id="exampleInputPassword1"
 									/>
 								</div>
-								<div class="mb-3">
-									<label for="exampleInputPassword1" class="form-label">
+								<div className="mb-3">
+									<label htmlFor="exampleInputPassword1" className="form-label">
 										Tag
 									</label>
 									<input
 										type="text"
-										class="form-control"
+										className="form-control"
 										id="exampleInputPassword1"
 									/>
 								</div>
@@ -85,18 +86,18 @@ export default function Noteitem(props) {
 
 					<div className="cards card heading container tw-text-center">
 						<h2>
-							{notes.title.length > 30
-								? notes.title.slice(0, 30) + "..."
+							{notes.title.length > 10
+								? notes.title.slice(0, 10) + "..."
 								: notes.title}
 						</h2>
 						<p className="tw-mt-12">
-							{notes.description.length > 30
-								? notes.description.slice(0, 30) + "..."
+							{notes.description.length > 15 
+								? notes.description.slice(0, 15) + "..."
 								: notes.description}
 						</p>
 					</div>
 					<div className="icont">
-						<Link style={{ zIndex: "1" }} to="/editnote">
+						<Link style={{ zIndex: "1" }} to="/viewnote">
 							<i className="fa-solid fa-eye icon "></i>
 						</Link>
 						<i
@@ -113,3 +114,6 @@ export default function Noteitem(props) {
 		</>
 	);
 }
+
+
+

@@ -4,7 +4,7 @@ import Navbar from "./Components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import About from "./Components/About";
-import Editnote from "./Components/Editnote";
+import Viewnote from "./Components/Viewnote";
 
 function App() {
 	return (
@@ -13,7 +13,7 @@ function App() {
 			<Routes>
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="/about" element={<About />} />
-				<Route exact path="/editnote" element={<Editnote />} />
+				<Route exact path="/viewnote" element={<Viewnote/>} />
 			</Routes>
 		</>
 	);
