@@ -63,7 +63,10 @@ router.put(
 	[
 		body("title", "Enter a valid title").isLength({ min: 3 }),
 		body("description", "Description must have atleast 5 characters").isLength({
-			min: 5,
+			min: 5
+		}),
+		body("tag", "tag must have atleast 3 characters").isLength({
+			max:6,min:3
 		}),
 	],
 	async (req, res) => {

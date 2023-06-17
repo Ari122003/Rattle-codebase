@@ -14,7 +14,7 @@ export default function Addnote() {
 		e.preventDefault();
 		addNote(note);
 		getNote()
-		console.log("yes")
+		
 	};
 	const onchange = (e) => {
 		setnote({

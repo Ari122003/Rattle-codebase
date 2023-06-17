@@ -70,7 +70,7 @@ function Notecontext(props) {
 	// Edit a note
 
 	const editNote = async (id, title, description, tag) => {
-		await fetch(`localhost:5000/api/notes/updatenote/${id}`, {
+		await fetch(`http://localhost:5000/api/notes/updatenote/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -78,7 +78,7 @@ function Notecontext(props) {
 					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmMjFiMzg2NTVjMzE1MWJkYWQ3NGY3In0sImlhdCI6MTY3NjgxMTA2NH0.7pHWPaLfVSfXpYjF6Avb8zGlfhAeGrXVaQkMVlTWnc4",
 			},
 
-			body: {},
+			body: JSON.stringify({ title, description, tag }),
 		})
 			.then((result) => {
 				return result.json();
@@ -87,14 +87,19 @@ function Notecontext(props) {
 				console.log(final);
 			});
 
+		let newNote = JSON.parse(JSON.stringify(note));
+
 		for (let i = 0; i <= note.length; i++) {
-			let item = note[i];
+			let item = newNote[i];
 			if (item._id == id) {
-				item.title = title;
-				item.description = description;
-				item.tag = tag;
+				newNote[i].title = title;
+				newNote[i].description = description;
+				newNote[i].tag = tag;
+				break;
 			}
 		}
+
+		setnote(newNote);
 	};
 
 	return (
