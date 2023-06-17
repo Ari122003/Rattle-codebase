@@ -13,6 +13,7 @@ export default function Addnote() {
 	const noteadder = (e) => {
 		e.preventDefault();
 		addNote(note);
+		setnote({title:"",description:"",tag:""})
 		getNote()
 		
 	};
@@ -32,6 +33,7 @@ export default function Addnote() {
 							type="text"
 							required="required"
 							id="title"
+							value={note.title}
 							onChange={onchange}
 						/>
 						<i className="fa-solid fa-pen"></i>
@@ -43,6 +45,7 @@ export default function Addnote() {
 							type="text"
 							required="required"
 							id="description"
+							value={note.description}
 							onChange={onchange}
 						/>
 						<label className="heading ">Description</label>
@@ -53,6 +56,7 @@ export default function Addnote() {
 							type="text"
 							required="required"
 							id="tag"
+							value={note.tag}
 							onChange={onchange}
 						/>
 						<label className="heading ">Tag</label>

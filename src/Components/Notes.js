@@ -128,6 +128,9 @@ export default function Notes() {
 					Your notes
 				</h1>
 				<div className="row">
+					<h2 className="tw-my-8 h1 heading  tw-text-center">
+						{note.length == 0 && "No notes to display"}
+					</h2>
 					{note.map((item) => {
 						return <Noteitem key={item._id} update={update} notes={item} />;
 					})}

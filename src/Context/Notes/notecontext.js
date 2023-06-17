@@ -55,7 +55,7 @@ function Notecontext(props) {
 				return result.json();
 			})
 			.then((final) => {
-				console.log(final);
+				console.log("Successfully deleted ");
 			});
 
 		let newnote = note.filter((item) => {
@@ -84,7 +84,7 @@ function Notecontext(props) {
 				return result.json();
 			})
 			.then((final) => {
-				console.log(final);
+				console.log("Success fully updated");
 			});
 
 		let newNote = JSON.parse(JSON.stringify(note));
