@@ -75,7 +75,26 @@ export default function Navbar() {
 									About
 								</Link>
 							</li>
+							<li className="nav-item">
+								<Link
+									className={`nav-link ${
+										location.pathname === "/login" ? "tw-font-extrabold" : ""
+									}  text-light`}
+									to="/login">
+									Login
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link
+									className={`nav-link ${
+										location.pathname === "/signup" ? "tw-font-extrabold" : ""
+									}  text-light`}
+									to="/signup">
+									Signup
+								</Link>
+							</li>
 						</ul>
+						
 					</div>
 				</div>
 			</nav>

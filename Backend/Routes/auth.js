@@ -79,9 +79,11 @@ router.post(
 
 	async (req, res) => {
 		//   If there is an error in credentials
+		let success=false
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
-			return res.status(400).json({ errors: errors.array() });
+			success=false
+			return res.status(400).json({  success,errors: errors.array() });
 		}
 
 		const { email, password } = req.body;
@@ -92,12 +94,14 @@ router.post(
 			let user = await User.findOne({ email });
 
 			if (!user) {
-				return res.status(400).json({ error: "Invalid credentials" });
+				success=false
+				return res.status(400).json({  success,error: "Invalid credentials" });
 			}
 
 			const passcomp = await bcrypt.compare(password, user.password);
 			if (!passcomp) {
-				return res.status(400).json({ error: "Invalid credentials" });
+				success=false
+				return res.status(400).json({ success,error: "Invalid credentials" });
 			}
 
 			//    Token generator
@@ -107,9 +111,10 @@ router.post(
 					id: user.id,
 				},
 			};
-
+              
+			success=true
 			const token = jwt.sign(data, "I am Aritra");
-			res.json({ token });
+			res.json({ success,token });
 		} catch (error) {
 			//   if there is some error in the database
 			console.log(error.message);
