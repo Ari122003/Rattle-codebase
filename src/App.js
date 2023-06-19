@@ -32,7 +32,7 @@ function App() {
 				<Route exact path="/about" element={<About />} />
 				<Route exact path="/viewnote" element={<Viewnote/>} />
 				<Route exact path="/login" element={<Login  alert={showalert}/>} />
-				<Route exact path="/signup" element={<Signup/>} />
+				<Route exact path="/signup" element={<Signup alert={showalert}/>} />
 			</Routes>
 		</>
 	);

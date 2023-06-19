@@ -13,8 +13,7 @@ function Notecontext(props) {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				"auth-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmMjFiMzg2NTVjMzE1MWJkYWQ3NGY3In0sImlhdCI6MTY3NjgxMTA2NH0.7pHWPaLfVSfXpYjF6Avb8zGlfhAeGrXVaQkMVlTWnc4",
+				"auth-token": localStorage.getItem("Token"),
 			},
 		})
 			.then((response) => {
@@ -32,8 +31,7 @@ function Notecontext(props) {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"auth-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmMjFiMzg2NTVjMzE1MWJkYWQ3NGY3In0sImlhdCI6MTY3NjgxMTA2NH0.7pHWPaLfVSfXpYjF6Avb8zGlfhAeGrXVaQkMVlTWnc4",
+				"auth-token": localStorage.getItem("Token"),
 			},
 
 			body: JSON.stringify(Newnote),
@@ -47,8 +45,7 @@ function Notecontext(props) {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
-				"auth-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmMjFiMzg2NTVjMzE1MWJkYWQ3NGY3In0sImlhdCI6MTY3NjgxMTA2NH0.7pHWPaLfVSfXpYjF6Avb8zGlfhAeGrXVaQkMVlTWnc4",
+				"auth-token": localStorage.getItem("Token"),
 			},
 		})
 			.then((result) => {
@@ -74,8 +71,7 @@ function Notecontext(props) {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
-				"auth-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmMjFiMzg2NTVjMzE1MWJkYWQ3NGY3In0sImlhdCI6MTY3NjgxMTA2NH0.7pHWPaLfVSfXpYjF6Avb8zGlfhAeGrXVaQkMVlTWnc4",
+				"auth-token": localStorage.getItem("Token"),
 			},
 
 			body: JSON.stringify({ title, description, tag }),

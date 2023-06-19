@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function () {
+export default function (props) {
 	const [details, setdetails] = useState({
 		username: "",
 		email: "",
@@ -30,9 +30,15 @@ export default function () {
 			})
 			.then((result) => {
 				console.log(result)
+				
 				if (result.success) {
 					localStorage.setItem("Token", result.token);
 					navigate("/");
+					props.alert("Registration successfull","success")
+				}
+				else
+				{
+					props.alert(result.errors,"warning")
 				}
 			});
 	};

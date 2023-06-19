@@ -1,11 +1,18 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
 	let location = useLocation();
+	let navigate = useNavigate();
 
 	useEffect(() => {}, [location]);
+
+	const clear = () => {
+		navigate("/login")
+		localStorage.clear();
+	};
 
 	return (
 		<>
@@ -93,8 +100,12 @@ export default function Navbar() {
 									Signup
 								</Link>
 							</li>
+							<li className="nav-item">
+								<label className={`nav-link text-light ${localStorage.getItem("Token")==null?"d-none":""}`} onClick={clear}>
+									Logout
+								</label>
+							</li>
 						</ul>
-						
 					</div>
 				</div>
 			</nav>

@@ -39,7 +39,7 @@ export default function Login(props) {
 					props.alert("Login successful", "success")
 				}
 				else{
-					props.alert(result.error, "danger")
+					props.alert(result.errors, "danger")
 				}
 			})
 	};
