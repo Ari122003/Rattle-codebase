@@ -24,8 +24,10 @@ router.post(
 	async (req, res) => {
 		//   If there is an error in credentials
 		const errors = validationResult(req);
+		let success= true
 		if (!errors.isEmpty()) {
-			return res.status(400).json({ errors: errors.array() });
+			success=false
+			return res.status(400).json({ success,errors: errors.array() });
 		}
 		// Check whether the user already exists or not
 
@@ -33,9 +35,10 @@ router.post(
 			let user = await User.findOne({ email: req.body.email });
 
 			if (user) {
+				success=false
 				return res
 					.status(400)
-					.json({ error: "User with this email already exeits" });
+					.json({ success,error: "User with this email already exeits" });
 			}
 			//  create the user in database
 
@@ -56,11 +59,12 @@ router.post(
 					id: user.id,
 				},
 			};
-
+              
 			const token = jwt.sign(data, "I am Aritra");
-			res.json({ token });
+			res.json({ success, token });
 		} catch (error) {
 			//   if there is some error in the database
+			success=false
 			console.log(error.message);
 			res.status(500).send("Internal server error");
 		}

@@ -2,7 +2,7 @@ import React from "react";
 import  { useState, } from "react";
 import  { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
 	const [details, setdetails] = useState({
 		email: "",
 		password: "",
@@ -31,16 +31,21 @@ export default function Login() {
 				return response.json();
 			})
 			.then((result) => {
+				console.log(result)
 				if(result.success)
 				{
 					localStorage.setItem("Token", result.token)
 					navigate("/")
+					props.alert("Login successful", "success")
 				}
-			});
+				else{
+					props.alert(result.error, "danger")
+				}
+			})
 	};
 
 	return (
-		<div className="container">
+		<div>
 			<div className="login-box">
 				<p>Login</p>
 				<form onSubmit={submit}>
