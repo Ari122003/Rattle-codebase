@@ -27,7 +27,7 @@ function Notecontext(props) {
 	// Add a note
 
 	const addNote = async (Newnote) => {
-		await fetch(`http://localhost:5000/api/notes/addnote`, {
+		let response = await fetch(`http://localhost:5000/api/notes/addnote`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -36,6 +36,8 @@ function Notecontext(props) {
 
 			body: JSON.stringify(Newnote),
 		});
+
+		return response.json();
 	};
 
 	// Delete a note
@@ -47,13 +49,9 @@ function Notecontext(props) {
 				"Content-Type": "application/json",
 				"auth-token": localStorage.getItem("Token"),
 			},
-		})
-			.then((result) => {
-				return result.json();
-			})
-			.then((final) => {
-				console.log("Successfully deleted ");
-			});
+		}).then((result) => {
+			return result.json();
+		});
 
 		let newnote = note.filter((item) => {
 			if (item._id !== id) {
@@ -67,35 +65,42 @@ function Notecontext(props) {
 	// Edit a note
 
 	const editNote = async (id, title, description, tag) => {
-		await fetch(`http://localhost:5000/api/notes/updatenote/${id}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				"auth-token": localStorage.getItem("Token"),
-			},
+		let response = await fetch(
+			`http://localhost:5000/api/notes/updatenote/${id}`,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					"auth-token": localStorage.getItem("Token"),
+				},
 
-			body: JSON.stringify({ title, description, tag }),
-		})
-			.then((result) => {
-				return result.json();
-			})
-			.then((final) => {
-				console.log("Success fully updated");
-			});
-
-		let newNote = JSON.parse(JSON.stringify(note));
-
-		for (let i = 0; i <= note.length; i++) {
-			let item = newNote[i];
-			if (item._id == id) {
-				newNote[i].title = title;
-				newNote[i].description = description;
-				newNote[i].tag = tag;
-				break;
+				body: JSON.stringify({ title, description, tag }),
 			}
-		}
+		);
 
-		setnote(newNote);
+		let result = response.json();
+		result.then((value) => {
+			if (value.success) {
+				let newNote = JSON.parse(JSON.stringify(note));
+
+				for (let i = 0; i <= note.length; i++) {
+					let item = newNote[i];
+					if (item._id == id) {
+						newNote[i].title = title;
+						newNote[i].description = description;
+						newNote[i].tag = tag;
+						break;
+					}
+				}
+
+				setnote(newNote);
+			}
+			  
+		});
+
+		return result
+
+	
 	};
 
 	return (

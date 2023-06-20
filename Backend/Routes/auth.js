@@ -16,7 +16,7 @@ router.post(
 		body("email", "Enter a valid email").isEmail(),
 		body("name", "Enter a valid name").isLength({ min: 3 }),
 		body("password", "Password must have atleast 5 characters").isLength({
-			min: 5,
+			min: 5, max:10
 		}),
 	],
 

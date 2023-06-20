@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import Noteitem from "./Noteitem";
 
-export default function Notes() {
+export default function Notes(props) {
 	let navigate = useNavigate();
 	const { note, getNote, editNote } = useContext(context);
 
 	useEffect(() => {
 		if (localStorage.getItem("Token")) {
 			getNote();
-			
 		} else {
 			navigate("/login");
 		}
@@ -46,7 +45,14 @@ export default function Notes() {
 
 	const handelclick = (e) => {
 		e.preventDefault();
-		editNote(notes.id, notes.title, notes.description, notes.tag);
+		let a = editNote(notes.id, notes.title, notes.description, notes.tag);
+		a.then((msg) => {
+			if (msg.success) {
+				props.alert("Successfully updated", "success");
+			} else {
+				props.alert(msg.errors, "warning");
+			}
+		});
 
 		refclose.current.click();
 	};
@@ -140,7 +146,14 @@ export default function Notes() {
 						{note.length == 0 && "No notes to display"}
 					</h2>
 					{note.map((item) => {
-						return <Noteitem key={item._id} update={update} notes={item} />;
+						return (
+							<Noteitem
+								key={item._id}
+								update={update}
+								notes={item}
+								alert={props.alert}
+							/>
+						);
 					})}
 				</div>
 			</div>

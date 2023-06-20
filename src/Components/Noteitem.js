@@ -7,7 +7,10 @@ export default function Noteitem(props) {
 
 	const {notes,update}= props;
 
-	
+	const deleter=() => {
+		deleteNote(notes._id);
+		props.alert("Successfully deleted","success")
+	}
 	
 
 	return (
@@ -39,9 +42,7 @@ export default function Noteitem(props) {
 							onClick={()=>{update(notes)}}></i>
 						<i
 							className="fa-solid icon fa-trash tw-mt-1"
-							onClick={() => {
-								deleteNote(notes._id);
-							}}></i>
+							onClick={deleter} ></i>
 					</div>
 				</div>
 			</div>

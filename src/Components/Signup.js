@@ -11,36 +11,40 @@ export default function (props) {
 	});
 
 	let navigate = useNavigate();
+
 	const submit = async (e) => {
 		e.preventDefault();
-		await fetch("http://localhost:5000/api/auth/CreateUser", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
 
-			body: JSON.stringify({
-				name: details.username,
-				email: details.email,
-				password: details.password,
-			}),
-		})
-			.then((response) => {
-				return response.json();
+		if (details.password == details.cpassword) {
+			await fetch("http://localhost:5000/api/auth/CreateUser", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+
+				body: JSON.stringify({
+					name: details.username,
+					email: details.email,
+					password: details.password,
+				}),
 			})
-			.then((result) => {
-				console.log(result)
-				
-				if (result.success) {
-					localStorage.setItem("Token", result.token);
-					navigate("/");
-					props.alert("Registration successfull","success")
-				}
-				else
-				{
-					props.alert(result.errors,"warning")
-				}
-			});
+				.then((response) => {
+					return response.json();
+				})
+				.then((result) => {
+					console.log(result);
+
+					if (result.success) {
+						localStorage.setItem("Token", result.token);
+						navigate("/");
+						props.alert("Registration successfull", "success");
+					} else {
+						props.alert(result.errors, "warning");
+					}
+				});
+		} else {
+			props.alert("Password doesn't match", "warning");
+		}
 	};
 
 	const change = (e) => {
@@ -56,7 +60,9 @@ export default function (props) {
 				<p className="title">Signup</p>
 				<form className="form" onSubmit={submit}>
 					<div className="input-group">
-						<label htmlFor="username">Username</label>
+						<label htmlFor="username" className="inputt">
+							Username
+						</label>
 						<input
 							type="text"
 							name="username"
@@ -66,7 +72,9 @@ export default function (props) {
 						/>
 					</div>
 					<div className="input-group">
-						<label htmlFor="username">Email</label>
+						<label htmlFor="username" className="inputt">
+							Email
+						</label>
 						<input
 							type="email"
 							name="email"
@@ -76,24 +84,28 @@ export default function (props) {
 						/>
 					</div>
 					<div className="input-group">
-						<label htmlFor="username">Password</label>
+						<label
+							htmlFor="username"
+							className="inputt">
+							Password
+						</label>
 						<input
 							type="password"
 							name="password"
 							id="password"
 							placeholder=""
-							
 							onChange={change}
 						/>
 					</div>
 					<div className="input-group">
-						<label htmlFor="password">Confirm Password</label>
+						<label htmlFor="password" className={details.cpassword==details.password?"inputt":"pass"}>
+							Confirm Password
+						</label>
 						<input
 							type="password"
 							name="cpassword"
 							id="cpassword"
 							placeholder=""
-							
 							onChange={change}
 						/>
 						<div className="forgot">

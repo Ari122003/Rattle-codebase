@@ -611,9 +611,14 @@ svg {
 	line-height: 1.25rem;
   }
   
-  .input-group label {
+  .inputt {
 	display: block;
 	color: rgba(156, 163, 175, 1);
+	margin-bottom: 4px;
+  }
+  .pass {
+	display: block;
+	color: red;
 	margin-bottom: 4px;
   }
   

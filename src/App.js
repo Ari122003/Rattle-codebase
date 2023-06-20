@@ -28,7 +28,7 @@ function App() {
 			<Navbar />
 			<Alert alert={alert}/>
 			<Routes>
-				<Route exact path="/" element={<Home />} />
+				<Route exact path="/" element={<Home alert={showalert}/>} />
 				<Route exact path="/about" element={<About />} />
 				<Route exact path="/viewnote" element={<Viewnote/>} />
 				<Route exact path="/login" element={<Login  alert={showalert}/>} />

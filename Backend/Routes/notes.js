@@ -28,8 +28,9 @@ router.post(
 		body("description", "Description must have atleast 5 characters").isLength({
 			min: 5,
 		}),
-		body("tag", "Tag must have atmost 8 cahracters").isLength({
-			max: 8,min:3
+		body("tag", "Tag must have atmost 10 cahracters").isLength({
+			max: 10,
+			min: 3,
 		}),
 	],
 	async (req, res) => {
@@ -37,7 +38,10 @@ router.post(
 			//   If there is an error in credentials
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
-				return res.status(400).json({ errors: errors.array() });
+				return res.status(400).json({
+					errors:
+						"Title must contain 3 character,Description must conatain atleast 5 character and Tag must contain 3 to 10 caharcter",
+				});
 			}
 			//    create and save notes
 			const { title, description, tag } = req.body;
@@ -63,14 +67,29 @@ router.put(
 	[
 		body("title", "Enter a valid title").isLength({ min: 3 }),
 		body("description", "Description must have atleast 5 characters").isLength({
-			min: 5
+			min: 5,
 		}),
 		body("tag", "tag must have atleast 3 characters").isLength({
-			max:6,min:3
+			max: 10,
+			min: 3,
 		}),
 	],
 	async (req, res) => {
+		let success = true;
 		try {
+			//   If there is an error in credentials
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				success = false;
+				return res
+					.status(400)
+					.json({
+						success,
+						errors:
+							"Title must contain 3 character,Description must conatain atleast 5 character and Tag must contain 3 to 10 caharcter",
+					});
+			}
+
 			const { title, description, tag } = req.body;
 
 			// Create a new note object
@@ -106,7 +125,7 @@ router.put(
 				{ new: true }
 			);
 
-			res.json(note);
+			res.json({ success, note });
 		} catch (error) {
 			//   if there is some error in the database
 			console.log(error.message);
