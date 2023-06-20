@@ -86,7 +86,7 @@ export default function Navbar() {
 								<Link
 									className={`nav-link ${
 										location.pathname === "/login" ? "tw-font-extrabold" : ""
-									}  text-light`}
+									}  text-light ${localStorage.getItem("Token")!=null?"d-none":""}`}
 									to="/login">
 									Login
 								</Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
 								<Link
 									className={`nav-link ${
 										location.pathname === "/signup" ? "tw-font-extrabold" : ""
-									}  text-light`}
+									}  text-light  ${localStorage.getItem("Token")!=null?"d-none":""}`}
 									to="/signup">
 									Signup
 								</Link>

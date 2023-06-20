@@ -28,7 +28,7 @@ router.post(
 			success = false;
 			return res
 				.status(400)
-				.json({ success, errors: "Please enter valid credentials" });
+				.json({ success, errors: "Username must contain atleaset 3 characters and password must contain 5 to 10 characters" });
 		}
 		// Check whether the user already exists or not
 

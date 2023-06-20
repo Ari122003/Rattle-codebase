@@ -21,7 +21,7 @@ function App() {
 
 		setTimeout(function () {
 			setalert(null);
-		}, 2000);
+		}, 3000);
 	}
 	return (
 		<>
