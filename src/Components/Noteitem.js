@@ -34,7 +34,7 @@ export default function Noteitem(props) {
 						</p>
 					</div>
 					<div className="icont">
-						<Link style={{ zIndex: "1" }} to="/viewnote">
+						<Link style={{ zIndex: "1" }} to="/updatenote">
 							<i className="fa-solid fa-eye icon "></i>
 						</Link>
 						<i
