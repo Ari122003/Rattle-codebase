@@ -16,7 +16,7 @@ export default function (props) {
 		e.preventDefault();
 
 		if (details.password == details.cpassword) {
-			await fetch("https://ari122003.github.io/Rattle-Server/api/auth/CreateUser", {
+			await fetch("http://localhost:5000/api/auth/CreateUser", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

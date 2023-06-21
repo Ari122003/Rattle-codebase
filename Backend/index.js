@@ -5,7 +5,7 @@
  connect()
 
  const app = express()
-const port = "https://ari122003.github.io/Rattle-Server"
+const port = 5000
 
 app.use(cors())
 app.use(express.json())
@@ -14,5 +14,5 @@ app.use("/api/auth", require("./Routes/auth"))
 app.use("/api/notes", require("./Routes/notes"))
 
 app.listen(port, () => {
-  
+  console.log(`Example app listening on port http://localhost:${port}`)
 })

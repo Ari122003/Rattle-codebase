@@ -19,7 +19,7 @@ export default function Login(props) {
 
 	const submit = async (e) => {
 		e.preventDefault();
-		await fetch("https://ari122003.github.io/Rattle-Server/api/auth/login", {
+		await fetch("http://localhost:5000/api/auth/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
