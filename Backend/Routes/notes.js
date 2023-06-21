@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Notes = require("../Modules/Notes");
-const fetchuser = require("../Middleware/fetchuser");
+const fetchuser = require("../Modules/Middleware/fetchuser");
 const { body, validationResult } = require("express-validator");
 
 // Endpoint for getiing notes of a user

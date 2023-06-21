@@ -4,7 +4,7 @@ const User = require("../Modules/User");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const fetchuser = require("../Middleware/fetchuser");
+const fetchuser = require("../Modules/Middleware/fetchuser");
 
 // createuser endpoint
 
