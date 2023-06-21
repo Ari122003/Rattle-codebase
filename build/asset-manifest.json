@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ari122003/Rattle.git/static/css/main.2c5da7ba.css",
+    "main.js": "/Ari122003/Rattle.git/static/js/main.bb7370a0.js",
+    "index.html": "/Ari122003/Rattle.git/index.html",
+    "main.2c5da7ba.css.map": "/Ari122003/Rattle.git/static/css/main.2c5da7ba.css.map",
+    "main.bb7370a0.js.map": "/Ari122003/Rattle.git/static/js/main.bb7370a0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2c5da7ba.css",
+    "static/js/main.bb7370a0.js"
+  ]
+}
