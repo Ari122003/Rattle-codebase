@@ -19,7 +19,7 @@ export default function Login(props) {
 
 	const submit = async (e) => {
 		e.preventDefault();
-		await fetch("http://localhost:5000/api/auth/login", {
+		await fetch(`https://rattle-18s7.onrender.com/api/auth/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

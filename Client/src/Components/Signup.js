@@ -16,7 +16,7 @@ export default function (props) {
 		e.preventDefault();
 
 		if (details.password == details.cpassword) {
-			await fetch("http://localhost:5000/api/auth/CreateUser", {
+			await fetch(`https://rattle-18s7.onrender.com/api/auth/CreateUser`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

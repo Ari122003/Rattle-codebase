@@ -9,7 +9,7 @@ function Notecontext(props) {
 	// Get all notes
 
 	const getNote = async () => {
-		await fetch(`http://localhost:5000/api/notes/fetchnotes`, {
+		await fetch(`https://rattle-18s7.onrender.com/api/notes/fetchnotes`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -27,7 +27,7 @@ function Notecontext(props) {
 	// Add a note
 
 	const addNote = async (Newnote) => {
-		let response = await fetch(`http://localhost:5000/api/notes/addnote`, {
+		let response = await fetch(`https://rattle-18s7.onrender.com/api/notes/addnote`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -43,7 +43,7 @@ function Notecontext(props) {
 	// Delete a note
 
 	const deleteNote = async (id) => {
-		await fetch(`http://localhost:5000/api/notes/deletenote/${id}`, {
+		await fetch(`https://rattle-18s7.onrender.com/api/notes/deletenote/${id}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
@@ -66,7 +66,7 @@ function Notecontext(props) {
 
 	const editNote = async (id, title, description, tag) => {
 		let response = await fetch(
-			`http://localhost:5000/api/notes/updatenote/${id}`,
+			`https://rattle-18s7.onrender.com/api/notes/updatenote/${id}`,
 			{
 				method: "PUT",
 				headers: {
