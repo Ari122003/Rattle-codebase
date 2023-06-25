@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext } from "react";
 import { context } from "../Context/Notes/Notecontext";
 import { Link } from "react-router-dom";
 
