@@ -19,17 +19,8 @@ export default function Navbar() {
 			<nav className="navbar navbar-expand-lg bg-dark tw-text-white">
 				<div className="container-fluid">
 					<div className="tw-flex  tw-font-medium tw-items-center  tw-justify-center tw-text-white">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							stroke="currentColor"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							className="tw-w-10 tw-h-10 tw-text-white tw-p-2 tw-bg-indigo-500 tw-rounded-full"
-							viewBox="0 0 24 24">
-							<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-						</svg>
+						
+						<img src={require("../LOGO.jpg")} id="logo"/>
 
 						<ul>
 							<li className="navbar-brand tw-ml-3  heading ">

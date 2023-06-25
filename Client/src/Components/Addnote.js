@@ -11,16 +11,18 @@ export default function Addnote(props) {
 	});
 
 	const noteadder = (e) => {
+		props.load("");
 		e.preventDefault();
 		setnote({ title: "", description: "", tag: "" });
 		let a = addNote(note);
 		getNote();
+		props.load();
 
 		a.then((result) => {
+			props.load("d-none");
 			if (result.errors != null) {
 				props.alert(result.errors, "warning");
-			}
-			else{
+			} else {
 				props.alert("Successfully added", "success");
 			}
 		});

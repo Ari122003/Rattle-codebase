@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { context } from "../Context/Notes/Notecontext";
-
 
 export default function Editnote() {
 	const { note, getNote } = useContext(context);
-	
 
 	useEffect(() => {
 		getNote();

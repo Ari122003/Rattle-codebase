@@ -44,9 +44,11 @@ export default function Notes(props) {
 	};
 
 	const handelclick = (e) => {
+		props.load("");
 		e.preventDefault();
 		let a = editNote(notes.id, notes.title, notes.description, notes.tag);
 		a.then((msg) => {
+			props.load("d-none");
 			if (msg.success) {
 				props.alert("Successfully updated", "success");
 			} else {

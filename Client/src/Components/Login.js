@@ -1,6 +1,6 @@
 import React from "react";
-import  { useState, } from "react";
-import  { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login(props) {
 	const [details, setdetails] = useState({
@@ -8,7 +8,7 @@ export default function Login(props) {
 		password: "",
 	});
 
-	let navigate = useNavigate()
+	let navigate = useNavigate();
 
 	const change = (e) => {
 		setdetails({
@@ -25,54 +25,72 @@ export default function Login(props) {
 				"Content-Type": "application/json",
 			},
 
-			body: JSON.stringify({email:details.email, password:details.password}),
+			body: JSON.stringify({
+				email: details.email,
+				password: details.password,
+			}),
 		})
 			.then((response) => {
 				return response.json();
 			})
 			.then((result) => {
-				console.log(result)
-				if(result.success)
-				{
-					localStorage.setItem("Token", result.token)
-					navigate("/")
-					props.alert("Login successful", "success")
+				props.load("d-none");
+				if (result.success) {
+					localStorage.setItem("Token", result.token);
+					navigate("/");
+					props.alert("Login successful", "success");
+				} else {
+					props.alert(result.errors, "danger");
 				}
-				else{
-					props.alert(result.errors, "danger")
-				}
-			})
+			});
+	};
+
+	const loader = () => {
+		props.load("");
 	};
 
 	return (
-		<div>
-			<div className="login-box">
-				<p>Login</p>
-				<form onSubmit={submit}>
-					<div className="user-box">
-						<input required="" name="email" type="text" value={details.email} onChange={change} />
-						<label>Email</label>
-					</div>
-					<div className="user-box">
-						<input
-							required=""
-							name="password"
-							type="password"
-              value={details.password}
-							onChange={change}
-						/>
-						<label>Password</label>
-					</div>
-					<button>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						lOGIN
-					</button>
-				</form>
-				{/* <p>Don't have an account? <a href="" className="a2">Sign up!</a></p> */}
+		<>
+			<div className="container">
+				<div className="login-box">
+					<p>Login</p>
+					<form onSubmit={submit}>
+						<div className="user-box">
+							<input
+								required=""
+								name="email"
+								type="text"
+								value={details.email}
+								onChange={change}
+							/>
+							<label>Email</label>
+						</div>
+						<div className="user-box">
+							<input
+								required=""
+								name="password"
+								type="password"
+								value={details.password}
+								onChange={change}
+							/>
+							<label>Password</label>
+						</div>
+						<button onClick={loader}>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							lOGIN
+						</button>
+					</form>
+					<p>
+						Don't have an account?{" "}
+						<Link to="/signup" className="a2">
+							Sign up!
+						</Link>
+					</p>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
